@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>MedAsset Recovery - Step 1.5</title>
+
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP" rel="stylesheet">
+
+<style>
+	body {margin: 0; padding: 0; font-family: 'Noto Sans', sans-serif; background-color: #f7f8fa;}
+	a {text-decoration: none;}
+
+	/* HEADER */
+	header {padding: 15px 30px; display: flex; background-color: #0b7098; color: #ffffff; font-size: 0.750em;}
+	header .logo img {width: 66px; display: block; margin: 0 auto;}
+	header .body {padding: 8px 30px;}
+	header .actions {margin-left: auto; font-size: 1.334em;}
+	header .actions ul {margin: 0; padding: 0; list-style-type: none;}
+	header .actions ul li {float: left; border-left: 1px solid #56ccf2;}
+	header .actions ul li:first-child {border: 0;}
+	header .actions ul li a {display: block; padding: 14px 25px; color: #ffffff;}
+	header .actions ul li a:hover {color: #56ccf2;}
+
+	/* NAV */
+	nav {display: flex; align-items: center; justify-content: center; background-color: #ffffff; color: #929eaf; border-bottom: 1px solid #eaedf3;}
+	nav .step {display: block; position: relative; overflow: hidden; padding: 24px 45px; text-align: center; flex-basis: 110px; z-index: 1;}
+	nav .step hr {border: 0; border-top: 1px dashed #dadada; margin-top: 11px; z-index: -1; width: 100%; position: absolute;  right: 0;}
+	nav .step:first-child hr {width: 50%;}
+	nav .step:last-child hr {width: 50%; left: -50%;}
+	nav .step .dot {display: inline-block; background-color: #ffffff;}
+	nav .step .dot > div {display: block; width: 22px; height: 22px; border-radius: 50%; border: 2px solid #dadada; background-color: #ffffff; margin: 0 10px;}
+	nav .step .stepNumber {font-size: 0.875em;}
+	nav .step .stepLabel {font-size: 1.125em;}
+	nav .step.current .dot > div {width: 20px; height: 20px; border: 2px solid #ffffff; box-shadow: 0 0 0 2px #0b7098; background-color: #0b7098; margin-top: 2px;}
+	nav .step.current .stepLabel {color: #4d5969;}
+
+	@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+		nav .step:last-child hr {left: -10%;}
+	}
+	@supports (-ms-accelerator:true) {
+		nav .step:last-child hr {left: -10%;}
+	}
+
+	/* MAIN */
+	main {padding: 24px 0 0 24px; color: #929eaf;}
+	main h3 {color: #4d5969; margin-top: 0; font-size: 1.143em;}
+	main > section {display: flex; flex-direction: column; align-items: center; justify-content: center;}
+	main .body {border: 1px solid #eaedf3; border-radius: 5px; background-color: #ffffff; display: flex; padding: 27px 40px; font-size: 0.875em;}
+	main .body .info {width: 304px;}
+	main .body .form {padding: 0 33px 0;}
+	main .actions {text-align: right;}
+	main .actions button {background-color: #0b7098; color: #ffffff; border: 0; border-radius: 5px; font-size: 1em; padding: 12px 65px; margin-top: 42px; cursor: pointer;}
+
+	/* FORM */
+	div.form > div {display: flex; flex-wrap: wrap; margin-bottom: 31px;}
+	div.form > div:last-child {margin-bottom: 0;}
+	div.form > div > div:first-child {margin-left: 0;}
+	div.form > div > div {margin-left: 20px;}
+	div.form > div > div.fullWidth {flex-basis: 100%;}
+	div.form label {display: block; color: #4d5969; font-size: 1em; font-weight: bold; text-transform: uppercase;}
+	div.form label span {color: #929eaf; text-transform: lowercase; font-weight: normal;}
+	div.form input {border: 1px solid #e0e0e0; border-radius: 5px; width: 220px; padding: 0 15px; height: 50px; font-size: 1.143em;}
+	div.form textarea {width: calc(100% - 30px); border: 1px solid #e0e0e0; border-radius: 5px; font-size: 1.407em; padding: 15px}
+	div.form .fileUpload {margin: 16px 0 0 0; overflow: hidden; padding-right: 31px;}
+	div.form .fileUpload .uploadBox {width: 64px; height: 64px; background: #f9f9f9 url('upload.png') no-repeat center; background-size: 50%; border: 1px dashed #e0e0e0; border-radius: 5px; float: left;}
+	div.form .fileUpload .uploadInput {float: left; margin-left: 16px;}
+	div.form .fileUpload .uploadInput .uploadLabel {margin-top: 3px;}
+	div.form .fileUpload input {display: none;}
+	div.form .fileUpload button {border: 1px solid #17283e; border-radius: 5px; padding: 10px 40px; color: #17283e; background-color: #ffffff; font-size: 1em; margin-top: 6px;}
+
+	/* FOOTER */
+	footer {margin-top: 85px; display: flex; align-items: center; justify-content: center; padding: 19px 0; font-size: 0.750em; color: #4d5969;}
+	footer ul {margin: 0; padding: 0; list-style-type: none;}
+	footer ul li {float: left; border-left: 1px solid #56ccf2; padding: 0 12px;}
+	footer ul li:first-child {border: 0;}
+</style>
+<!--[if IE]>
+	<style>
+		nav .step:last-child hr {left: -10%;}
+	</style>
+<![endif]-->
+</head>
+
+<body>
+
+<header>
+	<div class="logo" />
+		<a href="#"><img src="logo.png" /></a>
+		<div>MedAsset <strong>Recovery</strong></div>
+	</div>
+	<div class="body" />
+		<div><strong>+1-212-400-0510 | Help Desk</strong></div>
+		<div>Medicare Secondary Payer Act Compliance System</div>
+	</div>
+	<div class="actions" />
+		<ul>
+			<li><a href="#">Home</a></li>
+			<li><a href="#">Logout</a></li>
+		</ul>
+	</div>
+</header>
+
+<nav>
+	<div class="step current">
+		<hr></hr>
+		<div class="dot"><div></div></div>
+		<div class="stepNumber">STEP 1</div>
+		<div class="stepLabel">Injured Party</div>
+	</div>
+	<div class="step">
+		<hr></hr>
+		<div class="dot"><div></div></div>
+		<div class="stepNumber">STEP 2</div>
+		<div class="stepLabel">Accident Info</div>
+	</div>
+	<div class="step">
+		<hr></hr>
+		<div class="dot"><div></div></div>
+		<div class="stepNumber">STEP 3</div>
+		<div class="stepLabel">Insurance</div>
+	</div>
+	<div class="step">
+		<hr></hr>
+		<div class="dot"><div></div></div>
+		<div class="stepNumber">STEP 4</div>
+		<div class="stepLabel">Review</div>
+	</div>
+	<div class="step">
+		<hr></hr>
+		<div class="dot"><div></div></div>
+		<div class="stepNumber">STEP 5</div>
+		<div class="stepLabel">Submit</div>
+	</div>
+</nav>
+
+<main>
+	<section>
+		<form action="" method="post" enctype="multipart/form-data">
+			<div class="body">
+				<div class="info">
+					<h3>Basic Info</h3>
+					<p>
+						Please provide the basic<br />
+						information of the injured party.
+					</p>
+				</div>
+				<div class="form">
+					<div>
+						<div>
+							<label for="firstName">First Name</label>
+							<input type="text" value="" name="firstName" id="firstName" />
+						</div>
+						<div>
+							<label for="lastName">Last Name</label>
+							<input type="text" value="" name="lastName" id="lastName" />
+						</div>
+						<div>
+							<label for="middleName">Middle Name <span>(optional)</span></label>
+							<input type="text" value="" name="middleName" id="middleName" />
+						</div>
+					</div>
+					<div>
+						<div>
+							<label for="dateOfBirth">Date of Birth</label>
+							<input type="text" value="" name="dateOfBirth" id="dateOfBirth" placeholder="MM / DD / YYYY" />
+						</div>
+						<div>
+							<label for="ssn">SSN</label>
+							<input type="text" value="" name="ssn" id="ssn" placeholder="XXX-XX-XXXX" />
+						</div>
+						<div>
+							<label for="medicareId">Medicare ID (HICN)</label>
+							<input type="text" value="" name="medicareId" id="medicareId" />
+						</div>
+					</div>
+					<div>
+						<div class="fullWidth">
+							<label for="medicalInjury">Description of Medical Injury</label>
+							<textarea name="medicalInjury" id="medicalInjury"></textarea>
+						</div>
+					</div>
+					<div>
+						<div class="fullWidth">
+							<label>Medical Records</label>
+						</div>
+						<div class="fileUpload">
+							<div class="uploadBox"></div>
+							<div class="uploadInput">
+								<div class="uploadLabel">Hospital/ER Record</div>
+								<input type="file" name="hospitalReport" />
+								<button>Upload</button>
+							</div>
+						</div>
+						<div class="fileUpload">
+							<div class="uploadBox"></div>
+							<div class="uploadInput">
+								<div class="uploadLabel">Treating Physician's Narrative Report</div>
+								<input type="file" name="physicianReport" />
+								<button>Upload</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="actions">
+				<button>Save and Continue</button>
+			</div>
+		</form>
+	</section>
+</main>
+
+<footer>
+	<ul>
+		<li><a href="#">User Agreement</a></li>
+		<li><a href="#">Privacy Policy</a></li>
+		<li><a href="#">About Us</a></li>
+	</ul>
+</footer>
+
+</body>
+
+</html>
